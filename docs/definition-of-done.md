@@ -46,12 +46,12 @@ _As a user, I want to add contacts to the address book, so that I can save their
 
 - [x] Should add a contact to the address book
 - [ ] Should add multiple contacts at once
-- [ ] Should save email as lowercase
+- [x] Should save email as lowercase
 - [ ] Should validate the format of the details
   - [ ] Email address (foo@bar.baz)
   - [ ] Phone number (07 + 9 digits)
   - [ ] Name (alphabetical characters only)
-- [ ] Should return a succesful message after adding a contact
+- [x] Should return a succesful message after adding a contact
 
 ---
 

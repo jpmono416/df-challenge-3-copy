@@ -6,8 +6,9 @@ public class Contact {
     public Contact(String name, String phoneNumber, String email) {
         this.name = name;
         this.phoneNumber = phoneNumber;
-        this.email = email;
+        setEmail(email);
     }
+
 
     public String getName() {
         return this.name;
@@ -19,5 +20,9 @@ public class Contact {
 
     public String getEmail() {
         return this.email;
+    }
+
+    private void setEmail(String email) {
+        this.email = email.toLowerCase();
     }
 }
