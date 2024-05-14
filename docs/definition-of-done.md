@@ -13,6 +13,8 @@ classDiagram
         +String name
         +String emailAddress
         +String phoneNumber
+        -void validateEmail(String email)
+        -void validatePhone(String phone)
     }
     
     class AddressBook {
@@ -49,7 +51,7 @@ _As a user, I want to add contacts to the address book, so that I can save their
 - [x] Should save email as lowercase
 - [ ] Should validate the format of the details
   - [x] Email address (foo@bar.baz)
-  - [ ] Phone number (07 + 9 digits)
+  - [x] Phone number (07 + 9 digits)
   - [ ] Name (alphabetical characters only)
 - [x] Should return a succesful message after adding a contact
 

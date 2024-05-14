@@ -5,10 +5,9 @@ public class Contact {
 
     public Contact(String name, String phoneNumber, String email) {
         this.name = name;
-        this.phoneNumber = phoneNumber;
+        setPhoneNumber(phoneNumber);
         setEmail(email);
     }
-
 
     public String getName() {
         return this.name;
@@ -23,10 +22,25 @@ public class Contact {
     }
 
     private void setEmail(String email) {
-        if (!email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
-            throw new IllegalArgumentException("Invalid email format");
-        }
-
+        validateEmail(email);
         this.email = email.toLowerCase();
+    }
+
+    private void setPhoneNumber(String phoneNumber) {
+        validatePhoneNumber(phoneNumber);
+
+        this.phoneNumber = phoneNumber;
+    }
+
+    private void validateEmail(String email) {
+        // Regex matches alphanumeric & some special chars, followed by @,
+        // followed by alphanumeric, followed by a dot, followed by alphanumeric
+        if (!email.matches("^[A-Za-z0-9_.-]+@[A-Za-z]+\\.[A-Za-z]+$"))
+            throw new IllegalArgumentException("Invalid email format");
+    }
+
+    private void validatePhoneNumber(String phoneNumber) {
+        if (!phoneNumber.matches("^07[0-9]{9}$"))
+            throw new IllegalArgumentException("Invalid phone number format");
     }
 }
