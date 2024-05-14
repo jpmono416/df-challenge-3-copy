@@ -23,6 +23,10 @@ public class Contact {
     }
 
     private void setEmail(String email) {
+        if (!email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+            throw new IllegalArgumentException("Invalid email format");
+        }
+
         this.email = email.toLowerCase();
     }
 }
