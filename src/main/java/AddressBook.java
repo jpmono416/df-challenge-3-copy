@@ -10,9 +10,12 @@ public class AddressBook {
         this.contacts = new ArrayList<>();
     }
     public String addContact(Contact contact) {
-
         this.contacts.add(contact);
         return OutputValues.CONTACT_ADDED_SUCCESSFULLY;
+    }
+
+    public void addContacts(List<Contact> contacts) {
+        this.contacts.addAll(contacts);
     }
 
     public List<Contact> getContacts() {

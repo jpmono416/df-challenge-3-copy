@@ -3,6 +3,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -33,6 +35,22 @@ public class AddressBookTest {
         assertAll(
                 () -> assertEquals( 1, testAddressBook.getContacts().size()),
                 () -> assertEquals(testContact, testAddressBook.getContacts().get(0))
+        );
+    }
+
+    @Test
+    @DisplayName("Should add multiple contacts to the address book")
+    public void shouldAddMultipleContacts() {
+        Contact testContact2 = mock(Contact.class);
+        Contact testContact3 = mock(Contact.class);
+
+        testAddressBook.addContacts(List.of(testContact, testContact2, testContact3));
+
+        assertAll(
+                () -> assertEquals(3, testAddressBook.getContacts().size()),
+                () -> assertEquals(testContact, testAddressBook.getContacts().get(0)),
+                () -> assertEquals(testContact2, testAddressBook.getContacts().get(1)),
+                () -> assertEquals(testContact3, testAddressBook.getContacts().get(2))
         );
     }
 

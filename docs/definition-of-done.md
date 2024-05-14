@@ -47,7 +47,7 @@ classDiagram
 _As a user, I want to add contacts to the address book, so that I can save their details_
 
 - [x] Should add a contact to the address book
-- [ ] Should add multiple contacts at once
+- [x] Should add multiple contacts at once
 - [x] Should save email as lowercase
 - [x] Should validate the format of the details
   - [x] Email address (foo@bar.baz)
@@ -150,7 +150,7 @@ _As a user, I want to delete all contacts at once after confirming the action, s
 - [ ] Should return a message after the operation
 ---
 
-## User story 1
+## User story 12
 _As a user, I want to be able to sort all contacts by name, phone number, or email address, so that I can easily find the contact I'm looking for_
 
 - [ ] Should return all contacts in alphabetical order by name

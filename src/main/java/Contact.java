@@ -44,6 +44,11 @@ public class Contact {
         this.phoneNumber = phoneNumber;
     }
 
+    /**
+     * Matches names with only letters and spaces
+     * @param name
+     * @throws IllegalArgumentException if the name contains anything other than letters and spaces
+     */
     private void validateName(String name) {
         if (!name.matches("^[A-Za-z ]+$"))
             throw new IllegalArgumentException("Name cannot be empty");
