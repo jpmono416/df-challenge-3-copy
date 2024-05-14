@@ -3,14 +3,26 @@ public class Contact {
     private String phoneNumber;
     private String email;
 
+    /**
+     * Creates a new contact with a name, phone number and email.
+     * @param name
+     * @param phoneNumber
+     * @param email
+     * @throws IllegalArgumentException if the name, phone number or email are invalid
+     */
     public Contact(String name, String phoneNumber, String email) {
-        this.name = name;
+        setName(name);
         setPhoneNumber(phoneNumber);
         setEmail(email);
     }
 
     public String getName() {
         return this.name;
+    }
+
+    private void setName(String name) {
+        validateName(name);
+        this.name = name;
     }
 
     public String getPhoneNumber() {
@@ -32,13 +44,26 @@ public class Contact {
         this.phoneNumber = phoneNumber;
     }
 
+    private void validateName(String name) {
+        if (!name.matches("^[A-Za-z ]+$"))
+            throw new IllegalArgumentException("Name cannot be empty");
+    }
+
+    /**
+     * Matches email addresses with the format `example@domain.com`
+     * @throws IllegalArgumentException if the email does not match the format
+     * @param email
+     */
     private void validateEmail(String email) {
-        // Regex matches alphanumeric & some special chars, followed by @,
-        // followed by alphanumeric, followed by a dot, followed by alphanumeric
         if (!email.matches("^[A-Za-z0-9_.-]+@[A-Za-z]+\\.[A-Za-z]+$"))
             throw new IllegalArgumentException("Invalid email format");
     }
 
+    /**
+     * Matches a UK phone number beginning with 07 and followed by 9 digits
+     * @param phoneNumber
+     * @throws IllegalArgumentException if the phone number does not match the format
+     */
     private void validatePhoneNumber(String phoneNumber) {
         if (!phoneNumber.matches("^07[0-9]{9}$"))
             throw new IllegalArgumentException("Invalid phone number format");

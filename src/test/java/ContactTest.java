@@ -1,3 +1,4 @@
+import net.bytebuddy.matcher.StringMatcher;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -34,7 +35,9 @@ public class ContactTest {
                 () -> assertThrows(IllegalArgumentException.class,
                         () -> new Contact(defaultName, defaultPhoneNumber, "foo@gmail.")), // missing com
                 () -> assertThrows(IllegalArgumentException.class,
-                        () -> new Contact(defaultName, defaultPhoneNumber, "foo@gmail")) // missing .com
+                        () -> new Contact(defaultName, defaultPhoneNumber, "foo@gmail")), // missing .com
+                () -> assertThrows(IllegalArgumentException.class,
+                        () -> new Contact(defaultName, defaultPhoneNumber, "")) // empty email
         );
     }
 
@@ -50,9 +53,23 @@ public class ContactTest {
                 () -> assertThrows(IllegalArgumentException.class,
                         () -> new Contact(defaultName, "071234567a", defaultEmail)), // contains a letter
                 () -> assertThrows(IllegalArgumentException.class,
-                        () -> new Contact(defaultName, "12345678901", defaultEmail)) // does not start with 07
+                        () -> new Contact(defaultName, "12345678901", defaultEmail)), // does not start with 07
+                () -> assertThrows(IllegalArgumentException.class,
+                        () -> new Contact(defaultName, "", defaultEmail)) // empty phone number
         );
     }
 
-
+    @Test
+    @DisplayName("Should validate the name")
+    public void shouldValidateName() {
+        assertAll(
+                () -> assertDoesNotThrow(() -> new Contact(defaultName, defaultPhoneNumber, defaultEmail)), // valid contact
+                () -> assertThrows(IllegalArgumentException.class,
+                        () -> new Contact("", defaultPhoneNumber, defaultEmail)), // empty name
+                () -> assertThrows(IllegalArgumentException.class,
+                        () -> new Contact("John Doe1", defaultPhoneNumber, defaultEmail)), // contains a number
+                () -> assertThrows(IllegalArgumentException.class,
+                        () -> new Contact("John Doe!", defaultPhoneNumber, defaultEmail)) // contains a special character
+        );
+    }
 }
