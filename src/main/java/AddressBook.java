@@ -31,6 +31,9 @@ public class AddressBook {
     }
 
     public void removeContact(Contact contact) {
+        if(!this.contacts.contains(contact))
+            throw new IllegalArgumentException("Contact does not exist in the address book");
+
         this.contacts.remove(contact);
     }
 }

@@ -70,7 +70,7 @@ _As a user, I want to search for a contact by name, so I can see their details_
 _As a user, I want to remove a contact from the address book, so that I can delete their details_
 
 - [x] Should remove a contact from the address book
-- [ ] Should not remove a contact that does not exist
+- [x] Should not remove a contact that does not exist
 - [ ] Should return a message after the operation
 
 ---

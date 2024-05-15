@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -35,7 +34,7 @@ public class AddressBookTest {
         testAddressBook.addContact(testContact);
 
         assertAll(
-                () -> assertEquals( 1, testAddressBook.getContacts().size()),
+                () -> assertEquals(1, testAddressBook.getContacts().size()),
                 () -> assertEquals(testContact, testAddressBook.getContacts().get(0))
         );
     }
@@ -58,7 +57,7 @@ public class AddressBookTest {
 
     @Test
     @DisplayName("Should return a succesful message after adding a contact")
-    public void  addContactShouldReturnSuccesfulMessage() {
+    public void addContactShouldReturnSuccesfulMessage() {
         assertEquals(OutputValues.CONTACT_ADDED_SUCCESSFULLY, testAddressBook.addContact(testContact));
     }
 
@@ -108,6 +107,19 @@ public class AddressBookTest {
         testAddressBook.removeContact(testContact);
 
         assertEquals(Collections.EMPTY_LIST, testAddressBook.getContacts());
+    }
+
+    @Test
+    @DisplayName("Should not remove a contact that does not exist")
+    public void shouldNotRemoveContactThatDoesNotExist() {
+        testAddressBook.addContact(testContact);
+
+        Contact testContact2 = mock(Contact.class);
+
+        assertAll(
+                () -> assertThrows(IllegalArgumentException.class, () -> testAddressBook.removeContact(testContact2)),
+                () -> assertEquals(List.of(testContact), testAddressBook.getContacts())
+        );
     }
 
 
