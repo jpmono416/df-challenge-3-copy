@@ -84,5 +84,20 @@ public class AddressBookTest {
         assertEquals(Collections.EMPTY_LIST, testAddressBook.getContactsByName("John Deere"));
     }
 
+    @Test
+    @DisplayName("Should return all contacts with the same name")
+    public void shouldReturnAllContactsWithSameNameWhenSearchByName() {
+        Contact testContact2 = mock(Contact.class);
+        Contact testContact3 = mock(Contact.class);
+
+        when(testContact.getName()).thenReturn("John Doe");
+        when(testContact2.getName()).thenReturn("John Doe");
+        when(testContact3.getName()).thenReturn("John Smith");
+
+        testAddressBook.addContacts(List.of(testContact, testContact2, testContact3));
+
+        assertEquals(List.of(testContact, testContact2), testAddressBook.getContactsByName("John Doe"));
+    }
+
 
 }
