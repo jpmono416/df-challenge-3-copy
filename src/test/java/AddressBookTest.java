@@ -3,11 +3,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class AddressBookTest {
 
@@ -59,5 +61,28 @@ public class AddressBookTest {
     public void  addContactShouldReturnSuccesfulMessage() {
         assertEquals(OutputValues.CONTACT_ADDED_SUCCESSFULLY, testAddressBook.addContact(testContact));
     }
+
+    // User Story 2
+    @Test
+    @DisplayName("Should return an empty list if no contact is found")
+    public void shouldReturnEmptyListWhenNoContactFound() {
+        assertEquals(Collections.EMPTY_LIST, testAddressBook.getContactsByName("John Doe"));
+    }
+
+    @Test
+    @DisplayName("Should return the contact with a given name")
+    public void shouldReturnContactWhenSearchByName() {
+        Contact testContact2 = mock(Contact.class);
+
+        when(testContact.getName()).thenReturn("John Doe");
+        when(testContact2.getName()).thenReturn("John Smith");
+
+        testAddressBook.addContacts(List.of(testContact, testContact2));
+
+        assertEquals(List.of(testContact), testAddressBook.getContactsByName("John Doe"));
+        assertEquals(List.of(testContact2), testAddressBook.getContactsByName("John Smith"));
+        assertEquals(Collections.EMPTY_LIST, testAddressBook.getContactsByName("John Deere"));
+    }
+
 
 }

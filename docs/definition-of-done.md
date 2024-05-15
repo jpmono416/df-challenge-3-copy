@@ -60,9 +60,9 @@ _As a user, I want to add contacts to the address book, so that I can save their
 ## User story 2
 _As a user, I want to search for a contact by name, so I can see their details_
 
-- [ ] Should return the contact with the given name
+- [x] Should return the contact with the given name
 - [ ] Should return multiple contacts with the same name
-- [ ] Should return an empty list if no contact is found
+- [x] Should return an empty list if no contact is found
  
 ---
 
