@@ -29,4 +29,8 @@ public class AddressBook {
     public List<Contact> getContacts() {
         return this.contacts;
     }
+
+    public void removeContact(Contact contact) {
+        this.contacts.remove(contact);
+    }
 }

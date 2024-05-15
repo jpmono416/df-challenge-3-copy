@@ -99,5 +99,16 @@ public class AddressBookTest {
         assertEquals(List.of(testContact, testContact2), testAddressBook.getContactsByName("John Doe"));
     }
 
+    // User Story 3
+    @Test
+    @DisplayName("Should remove a contact from the address book")
+    public void shouldRemoveContact() {
+        testAddressBook.addContact(testContact);
+
+        testAddressBook.removeContact(testContact);
+
+        assertEquals(Collections.EMPTY_LIST, testAddressBook.getContacts());
+    }
+
 
 }

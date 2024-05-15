@@ -69,7 +69,7 @@ _As a user, I want to search for a contact by name, so I can see their details_
 ## User story 3
 _As a user, I want to remove a contact from the address book, so that I can delete their details_
 
-- [ ] Should remove a contact from the address book
+- [x] Should remove a contact from the address book
 - [ ] Should not remove a contact that does not exist
 - [ ] Should return a message after the operation
 
