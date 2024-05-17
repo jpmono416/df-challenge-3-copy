@@ -165,6 +165,7 @@ public class AddressBookTest {
         assertThrows(IllegalArgumentException.class, () -> testAddressBook.updateContact("invalid", editedContact));
     }
 
+    // User story 5
     @Test
     @DisplayName("Should not update a contact with an id that already exists (email or phone number)")
     public void shouldNotUpdateContactWithExistingEmail() {
@@ -207,5 +208,17 @@ public class AddressBookTest {
                 () -> assertThrows(IllegalArgumentException.class, () -> testAddressBook.addContact(testContact2)),
                 () -> assertThrows(IllegalArgumentException.class, () -> testAddressBook.addContact(testContact3))
         );
+    }
+
+    // User story 6
+    @Test
+    @DisplayName("Should return all contacts in the address book")
+    public void shouldReturnAllContacts() {
+        Contact testContact2 = mock(Contact.class);
+        Contact testContact3 = mock(Contact.class);
+
+        testAddressBook.addContacts(List.of(testContact, testContact2, testContact3));
+
+        assertEquals(List.of(testContact, testContact2, testContact3), testAddressBook.getContacts());
     }
 }

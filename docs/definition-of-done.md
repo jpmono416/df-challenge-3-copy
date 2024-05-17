@@ -98,7 +98,7 @@ _As a user, I want to be warned if I try to add a contact with an existing phone
 ## User story 6
 _As a user, I want to be able to get all contacts in the address book, so that I can see all the details at once_
 
-- [ ] Should return all contacts in the address book
+- [x] Should return all contacts in the address book
 - [ ] Should return an empty list if no contacts are found
 
 ---
