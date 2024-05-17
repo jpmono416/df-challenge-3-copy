@@ -221,4 +221,10 @@ public class AddressBookTest {
 
         assertEquals(List.of(testContact, testContact2, testContact3), testAddressBook.getContacts());
     }
+
+    @Test
+    @DisplayName("Should return an empty list if no contacts are found")
+    public void shouldReturnEmptyListWhenNoContactsFound() {
+        assertEquals(Collections.EMPTY_LIST, testAddressBook.getContacts());
+    }
 }
