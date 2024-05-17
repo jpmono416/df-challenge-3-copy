@@ -44,7 +44,8 @@ public class AddressBook {
 
     /**
      * Updates a contact with the given id (either phone number or email)
-     * @param idString : The phone number or email address of the contact, inputted by the user
+     *
+     * @param idString      : The phone number or email address of the contact, inputted by the user
      * @param editedContact : The updated contact to be saved
      */
     public void updateContact(String idString, Contact editedContact) {
@@ -52,6 +53,8 @@ public class AddressBook {
         Contact contact = findContactById(idString);
         if (contact == null)
             throw new IllegalArgumentException("Contact does not exist");
+        if(idAlreadyExists(editedContact.getEmail(), editedContact.getPhoneNumber()))
+            throw new IllegalArgumentException("Contact with the same email or phone number already exists");
 
         // Update contact
         this.contacts.set(this.contacts.indexOf(contact), editedContact);
@@ -68,6 +71,10 @@ public class AddressBook {
                 .filter(contact -> contact.getPhoneNumber().equals(idString) || contact.getEmail().equals(idString))
                 .findFirst()
                 .orElse(null);
+    }
+
+    private boolean idAlreadyExists(String email, String phoneNumber) {
+        return contacts.stream().anyMatch(contact -> contact.getPhoneNumber().equals(phoneNumber) || contact.getEmail().equals(email));
     }
 
 }

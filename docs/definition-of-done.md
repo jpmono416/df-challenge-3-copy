@@ -81,8 +81,8 @@ _As a user, I want to remove a contact from the address book, so that I can dele
 _As a user, I want to edit a contact in the address book, so that I can update their details_
 
 - [x] Should update a contact in the address book
-- [ ] Should not update a contact that does not exist
-- [ ] Should not edit a contact if email or phone number already exists
+- [x] Should not update a contact that does not exist
+- [x] Should not edit a contact if email or phone number already exists
 - [ ] Should return a message after the operation 
 
 ---

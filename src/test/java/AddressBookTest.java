@@ -158,4 +158,44 @@ public class AddressBookTest {
                 () -> assertEquals(editedContact, testAddressBook.getContacts().get(0))
         );
     }
+
+    @Test
+    @DisplayName("Should not update a contact that does not exist")
+    public void shouldNotUpdateContactThatDoesNotExist() {
+        when(testContact.getEmail()).thenReturn("foo@bar.com");
+        when(testContact.getPhoneNumber()).thenReturn("07123456789"); // Used in findContactById
+        Contact editedContact = mock(Contact.class);
+
+        testAddressBook.addContact(testContact);
+
+        assertThrows(IllegalArgumentException.class, () -> testAddressBook.updateContact("invalid", editedContact));
+    }
+
+    @Test
+    @DisplayName("Should not update a contact with an id that already exists (email or phone number)")
+    public void shouldNotUpdateContactWithExistingEmail() {
+        when(testContact.getEmail()).thenReturn("foo@bar.com");
+        when(testContact.getPhoneNumber()).thenReturn("07123456789");
+
+        // Same email
+        Contact testContact2 = mock(Contact.class);
+        when(testContact2.getEmail()).thenReturn("foo@bar.com");
+        when(testContact2.getPhoneNumber()).thenReturn("07987654321");
+
+        // Same phone number
+        Contact testContact3 = mock(Contact.class);
+        when(testContact3.getEmail()).thenReturn("bar@foo.com");
+        when(testContact3.getPhoneNumber()).thenReturn("07123456789");
+
+        testAddressBook.addContact(testContact);
+
+        // Invalid email
+        assertThrows(IllegalArgumentException.class, () -> testAddressBook.updateContact(testContact.getEmail(), testContact2));
+
+        // Invalid phone
+        assertThrows(IllegalArgumentException.class, () -> testAddressBook.updateContact(testContact.getPhoneNumber(), testContact3));
+    }
+
+
+
 }
