@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class AddressBook {
@@ -9,6 +8,7 @@ public class AddressBook {
     public AddressBook() {
         this.contacts = new ArrayList<>();
     }
+
     public String addContact(Contact contact) {
         this.contacts.add(contact);
         return OutputValues.CONTACT_ADDED_SUCCESSFULLY; // TODO: Not needed! Remove later and tests point to App IOManager
@@ -31,7 +31,7 @@ public class AddressBook {
     }
 
     public void removeContact(Contact contact) {
-        if(!this.contacts.contains(contact))
+        if (!this.contacts.contains(contact))
             throw new IllegalArgumentException("Contact does not exist in the address book");
 
         this.contacts.remove(contact);
@@ -42,5 +42,32 @@ public class AddressBook {
         this.contacts.removeIf(contact -> contact.getName().equals(details) || contact.getPhoneNumber().equals(details) || contact.getEmail().equals(details));
     }
 
+    /**
+     * Updates a contact with the given id (either phone number or email)
+     * @param idString : The phone number or email address of the contact, inputted by the user
+     * @param editedContact : The updated contact to be saved
+     */
+    public void updateContact(String idString, Contact editedContact) {
+        // Validate contact exists
+        Contact contact = findContactById(idString);
+        if (contact == null)
+            throw new IllegalArgumentException("Contact does not exist");
+
+        // Update contact
+        this.contacts.set(this.contacts.indexOf(contact), editedContact);
+    }
+
+    /**
+     * Finds a contact by its phone number or email address
+     *
+     * @param idString : The phone number or email address of the contact
+     * @return : The matching contact, or null if not found
+     */
+    private Contact findContactById(String idString) {
+        return contacts.stream()
+                .filter(contact -> contact.getPhoneNumber().equals(idString) || contact.getEmail().equals(idString))
+                .findFirst()
+                .orElse(null);
+    }
 
 }

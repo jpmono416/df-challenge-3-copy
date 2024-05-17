@@ -145,13 +145,13 @@ public class AddressBookTest {
     // User story 4
     @Test
     @DisplayName("Should edit a contact in the address book")
-    public void shouldEditContact() {
-        testAddressBook.addContact(testContact);
-        String testIdString = testContact.getEmail();
-
+    public void shouldUpdateContact() {
+        when(testContact.getEmail()).thenReturn("foo@bar.com");
+        when(testContact.getPhoneNumber()).thenReturn("07123456789"); // Used in findContactById
         Contact editedContact = mock(Contact.class);
 
-        testAddressBook.editContact(testIdString, editedContact);
+        testAddressBook.addContact(testContact);
+        testAddressBook.updateContact(testContact.getEmail(), editedContact);
 
         assertAll(
                 () -> assertEquals(1, testAddressBook.getContacts().size()),

@@ -22,7 +22,7 @@ classDiagram
         +String addContact(Contact contact)
         +String addContacts(List<Contact> contacts)
         +String removeContact(Contact contact)
-        +String editContact(, Contact contact)
+        +String updateContact(String idString)
         +List<Contact> getAllContacts(bool sorted)
         +int countContacts()
         +List<Contact> getContactsByName(String name)
@@ -31,6 +31,7 @@ classDiagram
         +List<Contact> getContactsByEmail(String emailAddress, bool sorted)
         +List<Contact> getContactsByPhone(String phoneNumber)
         +List<Contact> getContactsByPhone(String phoneNumber, bool sorted)
+        -Contact findContactById(String idString)
     }
         
 ```
@@ -79,8 +80,8 @@ _As a user, I want to remove a contact from the address book, so that I can dele
 ## User story 4
 _As a user, I want to edit a contact in the address book, so that I can update their details_
 
-- [ ] Should edit a contact in the address book
-- [ ] Should not edit a contact that does not exist
+- [x] Should update a contact in the address book
+- [ ] Should not update a contact that does not exist
 - [ ] Should not edit a contact if email or phone number already exists
 - [ ] Should return a message after the operation 
 
