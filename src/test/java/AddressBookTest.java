@@ -55,12 +55,6 @@ public class AddressBookTest {
         );
     }
 
-    @Test
-    @DisplayName("Should return a succesful message after adding a contact")
-    public void addContactShouldReturnSuccesfulMessage() {
-        assertEquals(OutputValues.CONTACT_ADDED_SUCCESSFULLY, testAddressBook.addContact(testContact));
-    }
-
     // User Story 2
     @Test
     @DisplayName("Should return an empty list if no contact is found")
@@ -196,6 +190,22 @@ public class AddressBookTest {
         assertThrows(IllegalArgumentException.class, () -> testAddressBook.updateContact(testContact.getPhoneNumber(), testContact3));
     }
 
+    @Test
+    @DisplayName("Should not add a contact with an email or phone number that already exists")
+    public void shouldNotAddContactWithExistingEmailOrPhoneNumber() {
+        Contact testContact2 = mock(Contact.class);
+        Contact testContact3 = mock(Contact.class);
+        when(testContact.getEmail()).thenReturn("foo@bar.com");
+        when(testContact.getPhoneNumber()).thenReturn("07123456789");
 
+        when(testContact2.getEmail()).thenReturn("foo@bar.com");
+        when(testContact3.getPhoneNumber()).thenReturn("07123456789");
 
+        testAddressBook.addContact(testContact);
+
+        assertAll(
+                () -> assertThrows(IllegalArgumentException.class, () -> testAddressBook.addContact(testContact2)),
+                () -> assertThrows(IllegalArgumentException.class, () -> testAddressBook.addContact(testContact3))
+        );
+    }
 }

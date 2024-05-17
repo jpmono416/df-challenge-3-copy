@@ -9,9 +9,11 @@ public class AddressBook {
         this.contacts = new ArrayList<>();
     }
 
-    public String addContact(Contact contact) {
+    public void addContact(Contact contact) {
+        if(idAlreadyExists(contact.getEmail(), contact.getPhoneNumber()))
+            throw new IllegalArgumentException("Contact with the same email or phone number already exists");
+
         this.contacts.add(contact);
-        return OutputValues.CONTACT_ADDED_SUCCESSFULLY; // TODO: Not needed! Remove later and tests point to App IOManager
     }
 
     public void addContacts(List<Contact> contacts) {

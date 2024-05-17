@@ -90,8 +90,7 @@ _As a user, I want to edit a contact in the address book, so that I can update t
 ## User story 5
 _As a user, I want to be warned if I try to add a contact with an existing phone number or email address, so that I can avoid duplicates_
 
-- [ ] Should not add a contact with an existing phone number
-- [ ] Should not add a contact with an existing email address
+- [x] Should not add a contact with an existing phone number or email address
 - [ ] Should return a message after the operation
 
 ---
