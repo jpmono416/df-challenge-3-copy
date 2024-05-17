@@ -36,4 +36,11 @@ public class AddressBook {
 
         this.contacts.remove(contact);
     }
+
+    public void removeContact(String details) {
+        // Check this
+        this.contacts.removeIf(contact -> contact.getName().equals(details) || contact.getPhoneNumber().equals(details) || contact.getEmail().equals(details));
+    }
+
+
 }

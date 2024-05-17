@@ -122,5 +122,40 @@ public class AddressBookTest {
         );
     }
 
+    // TODO - Write the code to pass this later
+    //@Test
+    //@DisplayName("Should remove a contact by email address or phone number")
+    public void shouldRemoveContactByEmailOrPhoneNumber() {
+        Contact testContact2 = mock(Contact.class);
+        String testEmail = "foo@gmail.com";
+        String testPhoneNumber = "07123456789";
 
+        when(testContact.getEmail()).thenReturn(testEmail);
+        when(testContact2.getPhoneNumber()).thenReturn(testPhoneNumber);
+
+        testAddressBook.addContacts(List.of(testContact, testContact2));
+
+        assertAll(
+                () -> assertDoesNotThrow(() -> testAddressBook.removeContact(testEmail)),
+                () -> assertDoesNotThrow(() -> testAddressBook.removeContact(testPhoneNumber)),
+                () -> assertEquals(Collections.EMPTY_LIST, testAddressBook.getContacts())
+        );
+    }
+
+    // User story 4
+    @Test
+    @DisplayName("Should edit a contact in the address book")
+    public void shouldEditContact() {
+        testAddressBook.addContact(testContact);
+        String testIdString = testContact.getEmail();
+
+        Contact editedContact = mock(Contact.class);
+
+        testAddressBook.editContact(testIdString, editedContact);
+
+        assertAll(
+                () -> assertEquals(1, testAddressBook.getContacts().size()),
+                () -> assertEquals(editedContact, testAddressBook.getContacts().get(0))
+        );
+    }
 }
