@@ -227,4 +227,21 @@ public class AddressBookTest {
     public void shouldReturnEmptyListWhenNoContactsFound() {
         assertEquals(Collections.EMPTY_LIST, testAddressBook.getContacts());
     }
+
+    // User story 8
+    @Test
+    @DisplayName("Should return the contact with the given phone number")
+    public void shouldReturnContactWhenSearchByPhoneNumber() {
+        when(testContact.getPhoneNumber()).thenReturn("07123456789");
+
+        testAddressBook.addContact(testContact);
+
+        assertEquals(testContact, testAddressBook.getContactById("07123456789"));
+    }
+
+    @Test
+    @DisplayName("Should return an exception if the contact does not exist")
+    public void shouldReturnExceptionWhenContactDoesNotExist() {
+        assertThrows(IllegalArgumentException.class, () -> testAddressBook.getContactById("07123456789"));
+    }
 }

@@ -10,7 +10,7 @@ public class AddressBook {
     }
 
     public void addContact(Contact contact) {
-        if(idAlreadyExists(contact.getEmail(), contact.getPhoneNumber()))
+        if (idAlreadyExists(contact.getEmail(), contact.getPhoneNumber()))
             throw new IllegalArgumentException("Contact with the same email or phone number already exists");
 
         this.contacts.add(contact);
@@ -30,6 +30,24 @@ public class AddressBook {
 
     public List<Contact> getContacts() {
         return this.contacts;
+    }
+
+    /**
+     * Since there is a double primary key on email & phone number, this method is in charge of checking
+     * against both fields that make up the ID as to avoid duplicated logic and improving complexity.
+     * @apiNote  This function is a wrapper around the findContactById function, which is private, so that if logic changes in the future
+     * it can be easily updated here without modifying the behaviour of the other public methods that use it.
+     *
+     * @param idString : The phone number or email address of the contact, inputted by the user
+     * @return : The contact with the given id or null if not found
+     */
+    public Contact getContactById(String idString) {
+        Contact result = findContactById(idString);
+
+        if (result == null)
+            throw new IllegalArgumentException("Contact does not exist");
+
+        return result;
     }
 
     public void removeContact(Contact contact) {
@@ -55,7 +73,7 @@ public class AddressBook {
         Contact contact = findContactById(idString);
         if (contact == null)
             throw new IllegalArgumentException("Contact does not exist");
-        if(idAlreadyExists(editedContact.getEmail(), editedContact.getPhoneNumber()))
+        if (idAlreadyExists(editedContact.getEmail(), editedContact.getPhoneNumber()))
             throw new IllegalArgumentException("Contact with the same email or phone number already exists");
 
         // Update contact

@@ -116,8 +116,8 @@ _As a user, I want to use a console application, so that I can interact with the
 ## User story 8
 _As a user, I want to search for a contact by phone number, so I can see their details_
 
-- [ ] Should return the contact with the given phone number
-- [ ] Should return an empty list if no contact is found
+- [x] Should return the contact with the given phone number
+- [x] Should return an exception message if the phone number does not exist
 - [ ] Should validate the format of the phone number
 
 ---
