@@ -125,8 +125,8 @@ _As a user, I want to search for a contact by phone number, so I can see their d
 ## User story 9
 _As a user, I want to search for a contact by email address, so I can see their details_
 
-- [ ] Should return the contact with the given email address
-- [ ] Should return an empty list if no contact is found
+- [x] Should return the contact with the given email address
+- [x] Should return an exception if no contact is found
 - [ ] Should validate the format of the email address
 - [ ] Should be case-insensitive
 

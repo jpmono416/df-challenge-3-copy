@@ -244,4 +244,23 @@ public class AddressBookTest {
     public void shouldReturnExceptionWhenContactDoesNotExist() {
         assertThrows(IllegalArgumentException.class, () -> testAddressBook.getContactById("07123456789"));
     }
+
+    // User story 9
+    @Test
+    @DisplayName("Should return the contact with the given email")
+    public void shouldReturnContactWhenSearchByEmail() {
+        String testEmail = "bar@foo.com";
+        when(testContact.getEmail()).thenReturn(testEmail);
+        when(testContact.getPhoneNumber()).thenReturn("07123456789");
+
+        testAddressBook.addContact(testContact);
+
+        assertEquals(testContact, testAddressBook.getContactById(testEmail));
+    }
+
+    @Test
+    @DisplayName("Should return an exception if the contact does not exist")
+    public void shouldReturnExceptionWhenContactDoesNotExistByEmail() {
+        assertThrows(IllegalArgumentException.class, () -> testAddressBook.getContactById("foo@bar.com"));
+    }
 }
