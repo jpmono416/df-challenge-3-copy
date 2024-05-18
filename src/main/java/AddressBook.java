@@ -125,4 +125,8 @@ public class AddressBook {
                 .sorted(Comparator.comparing(Contact::getPhoneNumber))
                 .collect(Collectors.toList());
     }
+
+    public int getContactCount() {
+        return this.contacts.size();
+    }
 }

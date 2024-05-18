@@ -344,4 +344,15 @@ public class AddressBookTest {
                 () -> assertEquals("07999999999", sorted.get(2).getPhoneNumber())
         );
     }
+
+    // User story 13
+    @Test
+    @DisplayName("Should return the total number of contacts  in list")
+    public void shouldReturnContactCount() {
+        assertEquals(0, testAddressBook.getContactCount());
+
+        testAddressBook.addContact(testContact);
+
+        assertEquals(1, testAddressBook.getContactCount());
+    }
 }

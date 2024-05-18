@@ -163,7 +163,7 @@ _As a user, I want to be able to sort all contacts by name, phone number, or ema
 ## User story 13
 _As a user, I want to be able to view the total number of contacts in the address book, so that I can keep track of the size of my address book_
 
-- [ ] Should return the total number of contacts in the address book
+- [x] Should return the total number of contacts in the address book
 
 ---
 
