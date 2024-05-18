@@ -298,7 +298,7 @@ public class AddressBookTest {
 
         testAddressBook.addContacts(List.of(testContact, testContact2, testContact3));
 
-        List<Contact> sorted = testAddressBook.sortContactsByName();
+        List<Contact> sorted = testAddressBook.sortContactsByName(Optional.empty());
         assertAll(
                 () -> assertEquals("First", sorted.get(0).getName()),
                 () -> assertEquals("Second", sorted.get(1).getName()),
@@ -373,6 +373,21 @@ public class AddressBookTest {
         assertAll(
                 () -> assertEquals("bar@foo.com", sorted.get(0).getEmail()),
                 () -> assertEquals("foo@bar.com", sorted.get(1).getEmail())
+        );
+    }
+
+    @Test
+    @DisplayName("Should allow to sort a custom list of contacts by email")
+    public void shouldSortCustomListByName() {
+        Contact testContact2 = mock(Contact.class);
+
+        when(testContact.getEmail()).thenReturn("Second");
+        when(testContact2.getEmail()).thenReturn("First");
+
+        List<Contact> sorted = testAddressBook.sortContactsByEmail(Optional.of(List.of(testContact, testContact2)));
+        assertAll(
+                () -> assertEquals("First", sorted.get(0).getEmail()),
+                () -> assertEquals("Second", sorted.get(1).getEmail())
         );
     }
 

@@ -104,8 +104,10 @@ public class AddressBook {
         this.contacts.clear();
     }
 
-    public List<Contact> sortContactsByName() {
-        return this.contacts.stream()
+    public List<Contact> sortContactsByName(Optional<List<Contact>> optContactsToSort) {
+        List<Contact> toSort = optContactsToSort.orElse(this.contacts);
+
+        return toSort.stream()
                 .sorted(Comparator.comparing(Contact::getName))
                 .collect(Collectors.toList());
 
