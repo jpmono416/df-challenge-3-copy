@@ -1,7 +1,4 @@
-import java.util.Comparator;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class AddressBook {
@@ -120,8 +117,10 @@ public class AddressBook {
                 .collect(Collectors.toList());
     }
 
-    public List<Contact> sortContactsByPhone() {
-        return this.contacts.stream()
+    public List<Contact> sortContactsByPhone(Optional<List<Contact>> optContactsToSort) {
+        List<Contact> toSort = optContactsToSort.orElse(this.contacts);
+
+        return toSort.stream()
                 .sorted(Comparator.comparing(Contact::getPhoneNumber))
                 .collect(Collectors.toList());
     }

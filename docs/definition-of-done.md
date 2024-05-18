@@ -157,7 +157,7 @@ _As a user, I want to be able to sort all contacts by name, phone number, or ema
 - [x] Should return all contacts in alphabetical order by name
 - [x] Should return all contacts in alphabetical order by email address
 - [x] Should return all contacts in ascending order by phone number
-
+- [ ] Should allow to sort a custom list of contacts (by any field) 
 ---
 
 ## User story 13

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
@@ -337,12 +338,25 @@ public class AddressBookTest {
 
         testAddressBook.addContacts(List.of(testContact, testContact2, testContact3));
 
-        List<Contact> sorted = testAddressBook.sortContactsByPhone();
+        List<Contact> sorted = testAddressBook.sortContactsByPhone(Optional.empty());
         assertAll(
                 () -> assertEquals("07111222333", sorted.get(0).getPhoneNumber()),
                 () -> assertEquals("07234567890", sorted.get(1).getPhoneNumber()),
                 () -> assertEquals("07999999999", sorted.get(2).getPhoneNumber())
         );
+    }
+
+    @Test
+    @DisplayName("Should allow to sort a custom list of contacts")
+    public void shouldSortCustomLists() {
+        Contact testContact2 = mock(Contact.class);
+
+        when(testContact.getPhoneNumber()).thenReturn("07999999999");
+        when(testContact2.getPhoneNumber()).thenReturn("07111222333");
+
+        List<Contact> sorted = testAddressBook.sortContactsByPhone(Optional.of(List.of(testContact, testContact2)));
+        assertEquals("07111222333", sorted.get(0).getPhoneNumber());
+        assertEquals("07999999999", sorted.get(1).getPhoneNumber());
     }
 
     // User story 13
