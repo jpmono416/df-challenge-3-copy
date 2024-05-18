@@ -318,7 +318,7 @@ public class AddressBookTest {
 
         testAddressBook.addContacts(List.of(testContact, testContact2, testContact3));
 
-        List<Contact> sorted = testAddressBook.sortContactsByEmail();
+        List<Contact> sorted = testAddressBook.sortContactsByEmail(Optional.empty());
         assertAll(
                 () -> assertEquals("bar@bar.com", sorted.get(0).getEmail()),
                 () -> assertEquals("bar@foo.com", sorted.get(1).getEmail()),
@@ -347,16 +347,33 @@ public class AddressBookTest {
     }
 
     @Test
-    @DisplayName("Should allow to sort a custom list of contacts")
-    public void shouldSortCustomLists() {
+    @DisplayName("Should allow to sort a custom list of contacts by phone")
+    public void shouldSortCustomListByPhone() {
         Contact testContact2 = mock(Contact.class);
 
         when(testContact.getPhoneNumber()).thenReturn("07999999999");
         when(testContact2.getPhoneNumber()).thenReturn("07111222333");
 
         List<Contact> sorted = testAddressBook.sortContactsByPhone(Optional.of(List.of(testContact, testContact2)));
-        assertEquals("07111222333", sorted.get(0).getPhoneNumber());
-        assertEquals("07999999999", sorted.get(1).getPhoneNumber());
+        assertAll(
+                () -> assertEquals("07111222333", sorted.get(0).getPhoneNumber()),
+                () -> assertEquals("07999999999", sorted.get(1).getPhoneNumber())
+        );
+    }
+
+    @Test
+    @DisplayName("Should allow to sort a custom list of contacts by email")
+    public void shouldSortCustomListByEmail() {
+        Contact testContact2 = mock(Contact.class);
+
+        when(testContact.getEmail()).thenReturn("foo@bar.com");
+        when(testContact2.getEmail()).thenReturn("bar@foo.com");
+
+        List<Contact> sorted = testAddressBook.sortContactsByEmail(Optional.of(List.of(testContact, testContact2)));
+        assertAll(
+                () -> assertEquals("bar@foo.com", sorted.get(0).getEmail()),
+                () -> assertEquals("foo@bar.com", sorted.get(1).getEmail())
+        );
     }
 
     // User story 13

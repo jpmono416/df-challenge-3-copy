@@ -111,8 +111,10 @@ public class AddressBook {
 
     }
 
-    public List<Contact> sortContactsByEmail() {
-        return this.contacts.stream()
+    public List<Contact> sortContactsByEmail(Optional<List<Contact>> optContactsToSort) {
+        List<Contact> toSort = optContactsToSort.orElse(this.contacts);
+
+        return toSort.stream()
                 .sorted(Comparator.comparing(Contact::getEmail))
                 .collect(Collectors.toList());
     }
