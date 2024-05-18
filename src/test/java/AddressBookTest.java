@@ -304,4 +304,24 @@ public class AddressBookTest {
                 () -> assertEquals("Third", sorted.get(2).getName())
         );
     }
+
+    @Test
+    @DisplayName("Should sort all contacts in alphabetical order by email")
+    public void shouldSortContactsByEmail() {
+        Contact testContact2 = mock(Contact.class);
+        Contact testContact3 = mock(Contact.class);
+
+        when(testContact.getEmail()).thenReturn("bar@foo.com");
+        when(testContact2.getEmail()).thenReturn("foo@bar.com");
+        when(testContact3.getEmail()).thenReturn("bar@bar.com");
+
+        testAddressBook.addContacts(List.of(testContact, testContact2, testContact3));
+
+        List<Contact> sorted = testAddressBook.sortContactsByEmail();
+        assertAll(
+                () -> assertEquals("bar@bar.com", sorted.get(0).getEmail()),
+                () -> assertEquals("bar@foo.com", sorted.get(1).getEmail()),
+                () -> assertEquals("foo@bar.com", sorted.get(2).getEmail())
+        );
+    }
 }

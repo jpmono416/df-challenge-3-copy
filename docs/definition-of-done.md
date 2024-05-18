@@ -154,8 +154,8 @@ _As a user, I want to delete all contacts at once after confirming the action, s
 ## User story 12
 _As a user, I want to be able to sort all contacts by name, phone number, or email address, so that I can easily find the contact I'm looking for_
 
-- [ ] Should return all contacts in alphabetical order by name
-- [ ] Should return all contacts in alphabetical order by email address
+- [x] Should return all contacts in alphabetical order by name
+- [x] Should return all contacts in alphabetical order by email address
 - [ ] Should return all contacts in ascending order by phone number
 
 ---

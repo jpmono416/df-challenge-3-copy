@@ -113,4 +113,16 @@ public class AddressBook {
                 .collect(Collectors.toList());
 
     }
+
+    public List<Contact> sortContactsByEmail() {
+        return this.contacts.stream()
+                .sorted(Comparator.comparing(Contact::getEmail))
+                .collect(Collectors.toList());
+    }
+
+    public List<Contact> sortContactsByPhone() {
+        return this.contacts.stream()
+                .sorted(Comparator.comparing(Contact::getPhoneNumber))
+                .collect(Collectors.toList());
+    }
 }
