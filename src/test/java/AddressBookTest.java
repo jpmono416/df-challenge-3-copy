@@ -263,4 +263,17 @@ public class AddressBookTest {
     public void shouldReturnExceptionWhenContactDoesNotExistByEmail() {
         assertThrows(IllegalArgumentException.class, () -> testAddressBook.getContactById("foo@bar.com"));
     }
+
+    // User story 11
+    @Test
+    @DisplayName("Should delete all contacts in the address book")
+    public void shouldDeleteAllContacts() {
+        Contact testContact2 = mock(Contact.class);
+        Contact testContact3 = mock(Contact.class);
+
+        testAddressBook.addContacts(List.of(testContact, testContact2, testContact3));
+
+        testAddressBook.deleteAllContacts();
+        assertEquals(0, testAddressBook.getContacts().size());
+    }
 }

@@ -146,7 +146,7 @@ _As a user, I want to delete all contacts at once after confirming the action, s
 
 - [ ] Should ask for confirmation before deleting
 - [ ] Should not delete if the user does not confirm
-- [ ] Should delete all contacts in the address book
+- [x] Should delete all contacts in the address book
 - [ ] Should not do anything if there are no contacts
 - [ ] Should return a message after the operation
 ---

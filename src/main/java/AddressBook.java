@@ -97,4 +97,7 @@ public class AddressBook {
         return contacts.stream().anyMatch(contact -> contact.getPhoneNumber().equals(phoneNumber) || contact.getEmail().equals(email));
     }
 
+    public void deleteAllContacts() {
+        this.contacts.clear();
+    }
 }
