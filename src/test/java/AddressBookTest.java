@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
@@ -275,5 +276,11 @@ public class AddressBookTest {
 
         testAddressBook.deleteAllContacts();
         assertEquals(0, testAddressBook.getContacts().size());
+    }
+
+    @Test
+    @DisplayName("Should not do anything if there are no contacts")
+    public void shouldNotDoAnythingWithEmptyList() {
+        assertThrows(NoSuchElementException.class, () -> testAddressBook.deleteAllContacts());
     }
 }

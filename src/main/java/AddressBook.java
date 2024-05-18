@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class AddressBook {
 
@@ -98,6 +99,9 @@ public class AddressBook {
     }
 
     public void deleteAllContacts() {
+        if(this.contacts.isEmpty())
+            throw new NoSuchElementException("There are no contacts to delete in the address book.");
+
         this.contacts.clear();
     }
 }
