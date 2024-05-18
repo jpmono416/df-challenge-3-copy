@@ -1,6 +1,8 @@
+import java.util.Comparator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 public class AddressBook {
 
@@ -103,5 +105,12 @@ public class AddressBook {
             throw new NoSuchElementException("There are no contacts to delete in the address book.");
 
         this.contacts.clear();
+    }
+
+    public List<Contact> sortContactsByName() {
+        return this.contacts.stream()
+                .sorted(Comparator.comparing(Contact::getName))
+                .collect(Collectors.toList());
+
     }
 }

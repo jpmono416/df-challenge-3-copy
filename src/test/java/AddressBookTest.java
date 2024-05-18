@@ -283,4 +283,25 @@ public class AddressBookTest {
     public void shouldNotDoAnythingWithEmptyList() {
         assertThrows(NoSuchElementException.class, () -> testAddressBook.deleteAllContacts());
     }
+
+    // User story 12
+    @Test
+    @DisplayName("Should sort all contacts in alphabetical order by name")
+    public void shouldSortContactsByName() {
+        Contact testContact2 = mock(Contact.class);
+        Contact testContact3 = mock(Contact.class);
+
+        when(testContact.getName()).thenReturn("Second");
+        when(testContact2.getName()).thenReturn("Third");
+        when(testContact3.getName()).thenReturn("First");
+
+        testAddressBook.addContacts(List.of(testContact, testContact2, testContact3));
+
+        List<Contact> sorted = testAddressBook.sortContactsByName();
+        assertAll(
+                () -> assertEquals("First", sorted.get(0).getName()),
+                () -> assertEquals("Second", sorted.get(1).getName()),
+                () -> assertEquals("Third", sorted.get(2).getName())
+        );
+    }
 }

@@ -26,11 +26,11 @@ classDiagram
         +List<Contact> getAllContacts(bool sorted)
         +int countContacts()
         +List<Contact> getContactsByName(String name)
-        +List<Contact> getContactsByName(String name, bool sorted)
         +List<Contact> getContactsByEmail(String emailAddress)
-        +List<Contact> getContactsByEmail(String emailAddress, bool sorted)
         +List<Contact> getContactsByPhone(String phoneNumber)
-        +List<Contact> getContactsByPhone(String phoneNumber, bool sorted)
+        +List<Contact> sortContactsByName()
+        +List<Contact> sortContactsByEmail()
+        +List<Contact> sortContactsByPhoneNumber()
         -Contact findContactById(String idString)
     }
         
