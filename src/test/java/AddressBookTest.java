@@ -246,6 +246,12 @@ public class AddressBookTest {
         assertThrows(IllegalArgumentException.class, () -> testAddressBook.getContactById("07123456789"));
     }
 
+    @Test
+    @DisplayName("Should validate the format of the phone number")
+    public void shouldValidatePhoneWhenGetByPhone() {
+        assertThrows(IllegalArgumentException.class, () -> testAddressBook.getContactById("77123456789"));
+    }
+
     // User story 9
     @Test
     @DisplayName("Should return the contact with the given email")
@@ -269,12 +275,6 @@ public class AddressBookTest {
     @DisplayName("Should validate the format of the email")
     public void shouldValidateEmailWhenGetByEmail() {
         assertThrows(IllegalArgumentException.class, () -> testAddressBook.getContactById("invalid"));
-    }
-
-    @Test
-    @DisplayName("Should validate the format of the phone number")
-    public void shouldValidatePhoneWhenGetByPhone() {
-        assertThrows(IllegalArgumentException.class, () -> testAddressBook.getContactById("77123456789"));
     }
 
     @Test
