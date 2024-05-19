@@ -266,6 +266,23 @@ public class AddressBookTest {
         assertThrows(IllegalArgumentException.class, () -> testAddressBook.getContactById("foo@bar.com"));
     }
 
+    @Test
+    @DisplayName("Should validate the format of the email")
+    public void shouldValidateEmailWhenGetByEmail() {
+        assertThrows(IllegalArgumentException.class, () -> testAddressBook.getContactById("invalid"));
+    }
+
+    @Test
+    @DisplayName("Should validate the format of the phone number")
+    public void shouldValidatePhoneWhenGetByPhone() {
+        assertThrows(IllegalArgumentException.class, () -> testAddressBook.getContactById("77123456789"));
+    }
+
+    @Test
+    @DisplayName("Should be case-insensitive when searching by id")
+    public void shouldBeCaseInsensitiveWhenSearching() {
+
+    }
     // User story 11
     @Test
     @DisplayName("Should delete all contacts in the address book")

@@ -42,10 +42,14 @@ public class AddressBook {
      * @return : The contact with the given id or null if not found
      */
     public Contact getContactById(String idString) {
+        if(!this.validateIdString(idString)) {
+            throw new IllegalArgumentException("Invalid email or phone number format.");
+        }
+
         Contact result = findContactById(idString);
 
         if (result == null)
-            throw new IllegalArgumentException("Contact does not exist");
+            throw new NoSuchElementException("Contact does not exist");
 
         return result;
     }
@@ -131,5 +135,9 @@ public class AddressBook {
 
     public int getContactCount() {
         return this.contacts.size();
+    }
+
+    private boolean validateIdString(String idString) {
+        return Validation.validateEmail(idString) || Validation.validatePhoneNumber(idString);
     }
 }

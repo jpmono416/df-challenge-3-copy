@@ -4,9 +4,8 @@ public final class Validation {
      * @param name
      * @throws IllegalArgumentException if the name contains anything other than letters and spaces
      */
-    public static void validateName(String name) {
-        if (!name.matches("^[A-Za-z ]+$"))
-            throw new IllegalArgumentException("Name cannot be empty");
+    public static boolean validateName(String name) {
+        return name.matches("^[A-Za-z ]+$");
     }
 
     /**
@@ -14,9 +13,8 @@ public final class Validation {
      * @throws IllegalArgumentException if the email does not match the format
      * @param email
      */
-    public static void validateEmail(String email) {
-        if (!email.matches("^[A-Za-z0-9_.-]+@[A-Za-z]+\\.[A-Za-z]+$"))
-            throw new IllegalArgumentException("Invalid email format");
+    public static boolean validateEmail(String email) {
+        return email.matches("^[A-Za-z0-9_.-]+@[A-Za-z]+\\.[A-Za-z]+$");
     }
 
     /**
@@ -24,8 +22,7 @@ public final class Validation {
      * @param phoneNumber
      * @throws IllegalArgumentException if the phone number does not match the format
      */
-    public static void validatePhoneNumber(String phoneNumber) {
-        if (!phoneNumber.matches("^07[0-9]{9}$"))
-            throw new IllegalArgumentException("Invalid phone number format");
+    public static boolean validatePhoneNumber(String phoneNumber) {
+        return phoneNumber.matches("^07[0-9]{9}$");
     }
 }
