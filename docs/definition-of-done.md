@@ -72,7 +72,7 @@ _As a user, I want to remove a contact from the address book, so that I can dele
 
 - [x] Should remove a contact from the address book
 - [x] Should not remove a contact that does not exist
-- [ ] Should remove a contact by email address or phone number
+- [x] Should remove a contact by email address or phone number
 - [ ] Should return a message after the operation
 
 ---

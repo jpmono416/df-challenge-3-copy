@@ -56,14 +56,21 @@ public class AddressBook {
 
     public void removeContact(Contact contact) {
         if (!this.contacts.contains(contact))
-            throw new IllegalArgumentException("Contact does not exist in the address book");
+            throw new NoSuchElementException("Contact does not exist in the address book");
 
         this.contacts.remove(contact);
     }
 
-    public void removeContact(String details) {
-        // Check this
-        this.contacts.removeIf(contact -> contact.getName().equals(details) || contact.getPhoneNumber().equals(details) || contact.getEmail().equals(details));
+    public void removeContact(String idString) {
+        if(!validateIdString(idString)) {
+            throw new IllegalArgumentException("Invalid email or phone number.");
+        }
+        Contact result = findContactById(idString.toLowerCase());
+
+        if (result == null)
+            throw new NoSuchElementException("Contact does not exist");
+
+        this.contacts.remove(result);
     }
 
     /**

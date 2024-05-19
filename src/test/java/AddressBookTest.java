@@ -113,27 +113,26 @@ public class AddressBookTest {
         Contact testContact2 = mock(Contact.class);
 
         assertAll(
-                () -> assertThrows(IllegalArgumentException.class, () -> testAddressBook.removeContact(testContact2)),
+                () -> assertThrows(NoSuchElementException.class, () -> testAddressBook.removeContact(testContact2)),
                 () -> assertEquals(List.of(testContact), testAddressBook.getContacts())
         );
     }
 
-    // TODO - Write the code to pass this later
-    //@Test
-    //@DisplayName("Should remove a contact by email address or phone number")
+    @Test
+    @DisplayName("Should remove a contact by email address or phone number")
     public void shouldRemoveContactByEmailOrPhoneNumber() {
         Contact testContact2 = mock(Contact.class);
-        String testEmail = "foo@gmail.com";
-        String testPhoneNumber = "07123456789";
 
-        when(testContact.getEmail()).thenReturn(testEmail);
-        when(testContact2.getPhoneNumber()).thenReturn(testPhoneNumber);
+        when(testContact.getEmail()).thenReturn("foo@bar.com");
+        when(testContact.getPhoneNumber()).thenReturn("07123456777");
+        when(testContact2.getEmail()).thenReturn("bar@foo.com");
+        when(testContact2.getPhoneNumber()).thenReturn("07123456789");
 
         testAddressBook.addContacts(List.of(testContact, testContact2));
 
         assertAll(
-                () -> assertDoesNotThrow(() -> testAddressBook.removeContact(testEmail)),
-                () -> assertDoesNotThrow(() -> testAddressBook.removeContact(testPhoneNumber)),
+                () -> assertDoesNotThrow(() -> testAddressBook.removeContact("foo@bar.com")),
+                () -> assertDoesNotThrow(() -> testAddressBook.removeContact("07123456789")),
                 () -> assertEquals(Collections.EMPTY_LIST, testAddressBook.getContacts())
         );
     }
