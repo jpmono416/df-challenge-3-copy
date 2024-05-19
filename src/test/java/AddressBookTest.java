@@ -281,8 +281,14 @@ public class AddressBookTest {
     @Test
     @DisplayName("Should be case-insensitive when searching by id")
     public void shouldBeCaseInsensitiveWhenSearching() {
+        when(testContact.getEmail()).thenReturn("foo@bar.com");
+        when(testContact.getPhoneNumber()).thenReturn("07123456789");
 
+        testAddressBook.addContact(testContact);
+
+        assertEquals(testContact, testAddressBook.getContactById("FOO@BAR.COM"));
     }
+
     // User story 11
     @Test
     @DisplayName("Should delete all contacts in the address book")

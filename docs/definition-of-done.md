@@ -128,7 +128,7 @@ _As a user, I want to search for a contact by email address, so I can see their 
 - [x] Should return the contact with the given email address
 - [x] Should return an exception if no contact is found
 - [x] Should validate the format of the email address
-- [ ] Should be case-insensitive
+- [x] Should be case-insensitive
 
 ---
 

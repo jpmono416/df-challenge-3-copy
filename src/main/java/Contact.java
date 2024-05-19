@@ -11,9 +11,9 @@ public class Contact {
      * @throws IllegalArgumentException if the name, phone number or email are invalid
      */
     public Contact(String name, String phoneNumber, String email) {
-        setName(name);
+        setName(name.toLowerCase());
         setPhoneNumber(phoneNumber);
-        setEmail(email);
+        setEmail(email.toLowerCase());
     }
 
     public String getName() {

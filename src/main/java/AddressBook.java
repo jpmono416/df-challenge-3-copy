@@ -35,18 +35,18 @@ public class AddressBook {
     /**
      * Since there is a double primary key on email & phone number, this method is in charge of checking
      * against both fields that make up the ID as to avoid duplicated logic and improving complexity.
-     * @apiNote  This function is a wrapper around the findContactById function, which is private, so that if logic changes in the future
-     * it can be easily updated here without modifying the behaviour of the other public methods that use it.
      *
      * @param idString : The phone number or email address of the contact, inputted by the user
      * @return : The contact with the given id or null if not found
+     * @apiNote This function is a wrapper around the findContactById function, which is private, so that if logic changes in the future
+     * it can be easily updated here without modifying the behaviour of the other public methods that use it.
      */
     public Contact getContactById(String idString) {
-        if(!this.validateIdString(idString)) {
+        if (!this.validateIdString(idString)) {
             throw new IllegalArgumentException("Invalid email or phone number format.");
         }
 
-        Contact result = findContactById(idString);
+        Contact result = findContactById(idString.toLowerCase());
 
         if (result == null)
             throw new NoSuchElementException("Contact does not exist");
@@ -102,7 +102,7 @@ public class AddressBook {
     }
 
     public void deleteAllContacts() {
-        if(this.contacts.isEmpty())
+        if (this.contacts.isEmpty())
             throw new NoSuchElementException("There are no contacts to delete in the address book.");
 
         this.contacts.clear();
