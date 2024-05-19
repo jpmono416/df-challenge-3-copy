@@ -61,7 +61,7 @@ public class AddressBookTest {
     @Test
     @DisplayName("Should return an empty list if no contact is found")
     public void shouldReturnEmptyListWhenNoContactFound() {
-        assertEquals(Collections.EMPTY_LIST, testAddressBook.getContactsByName("John Doe"));
+        assertEquals(Collections.EMPTY_LIST, testAddressBook.getContactsByAnyMatch("John Doe"));
     }
 
     @Test
@@ -74,9 +74,9 @@ public class AddressBookTest {
 
         testAddressBook.addContacts(List.of(testContact, testContact2));
 
-        assertEquals(List.of(testContact), testAddressBook.getContactsByName("John Doe"));
-        assertEquals(List.of(testContact2), testAddressBook.getContactsByName("John Smith"));
-        assertEquals(Collections.EMPTY_LIST, testAddressBook.getContactsByName("John Deere"));
+        assertEquals(List.of(testContact), testAddressBook.getContactsByAnyMatch("John Doe"));
+        assertEquals(List.of(testContact2), testAddressBook.getContactsByAnyMatch("John Smith"));
+        assertEquals(Collections.EMPTY_LIST, testAddressBook.getContactsByAnyMatch("John Deere"));
     }
 
     @Test
@@ -91,7 +91,7 @@ public class AddressBookTest {
 
         testAddressBook.addContacts(List.of(testContact, testContact2, testContact3));
 
-        assertEquals(List.of(testContact, testContact2), testAddressBook.getContactsByName("John Doe"));
+        assertEquals(List.of(testContact, testContact2), testAddressBook.getContactsByAnyMatch("John Doe"));
     }
 
     // User Story 3
@@ -450,8 +450,19 @@ public class AddressBookTest {
 
         testAddressBook.addContacts(List.of(testContact, testContact2));
 
-        assertEquals(2, testAddressBook.getContactsByName("Foo").size());
+        assertEquals(2, testAddressBook.getContactsByAnyMatch("Foo").size());
     }
 
+    @Test
+    @DisplayName("Should return partial matches when search by email")
+    public void shouldPartialMatchWhenSearchByEmail() {
+        Contact testContact2 = mock(Contact.class);
 
+        when(testContact.getName()).thenReturn("Bar@bar.com");
+        when(testContact2.getName()).thenReturn("Foo@bar.com");
+
+        testAddressBook.addContacts(List.of(testContact, testContact2));
+
+        assertEquals(2, testAddressBook.getContactsByAnyMatch("@bar.com").size());
+    }
 }

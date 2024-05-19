@@ -20,10 +20,10 @@ public class AddressBook {
         this.contacts.addAll(contacts);
     }
 
-    public List<Contact> getContactsByName(String name) {
+    public List<Contact> getContactsByAnyMatch(String attribute) {
         List<Contact> matchingContacts = new ArrayList<>();
 
-        this.contacts.stream().filter(contact -> contact.getName().contains(name)).forEach(matchingContacts::add);
+        this.contacts.stream().filter(contact -> anyMatchInContact(attribute, contact)).forEach(matchingContacts::add);
 
         return sortContactsByName(Optional.of(matchingContacts));
     }
@@ -62,7 +62,7 @@ public class AddressBook {
     }
 
     public void removeContact(String idString) {
-        if(!validateIdString(idString)) {
+        if (!validateIdString(idString)) {
             throw new IllegalArgumentException("Invalid email or phone number.");
         }
         Contact result = findContactById(idString.toLowerCase());
@@ -146,5 +146,11 @@ public class AddressBook {
 
     private boolean validateIdString(String idString) {
         return Validation.validateEmail(idString) || Validation.validatePhoneNumber(idString);
+    }
+
+    private boolean anyMatchInContact(String attribute, Contact contact) {
+        return contact.getName().contains(attribute)
+                || contact.getEmail().contains(attribute)
+                || contact.getPhoneNumber().contains(attribute);
     }
 }

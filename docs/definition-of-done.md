@@ -172,5 +172,5 @@ _As a user, I want to be able to search for a contact by partial name, phone num
 
 - [ ] Should return the contacts that contain partial matches when searching by
   - [x] Name
-  - [ ] Email address
+  - [x] Email address
   - [ ] Phone number
