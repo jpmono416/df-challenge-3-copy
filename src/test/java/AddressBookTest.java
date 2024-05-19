@@ -70,7 +70,12 @@ public class AddressBookTest {
         Contact testContact2 = mock(Contact.class);
 
         when(testContact.getName()).thenReturn("John Doe");
+        when(testContact.getPhoneNumber()).thenReturn("07123456789");
+        when(testContact.getEmail()).thenReturn("bar@foo.com");
+
         when(testContact2.getName()).thenReturn("John Smith");
+        when(testContact2.getPhoneNumber()).thenReturn("07987654321");
+        when(testContact2.getEmail()).thenReturn("foo@bar.com");
 
         testAddressBook.addContacts(List.of(testContact, testContact2));
 
@@ -86,8 +91,16 @@ public class AddressBookTest {
         Contact testContact3 = mock(Contact.class);
 
         when(testContact.getName()).thenReturn("John Doe");
+        when(testContact.getPhoneNumber()).thenReturn("07123456789");
+        when(testContact.getEmail()).thenReturn("bar@foo.com");
+
         when(testContact2.getName()).thenReturn("John Doe");
+        when(testContact2.getPhoneNumber()).thenReturn("07987654321");
+        when(testContact2.getEmail()).thenReturn("foo@bar.com");
+
         when(testContact3.getName()).thenReturn("John Smith");
+        when(testContact3.getPhoneNumber()).thenReturn("07987654321");
+        when(testContact3.getEmail()).thenReturn("bar@bar.com");
 
         testAddressBook.addContacts(List.of(testContact, testContact2, testContact3));
 
@@ -243,7 +256,7 @@ public class AddressBookTest {
     @Test
     @DisplayName("Should return an exception if the contact does not exist")
     public void shouldReturnExceptionWhenContactDoesNotExist() {
-        assertThrows(IllegalArgumentException.class, () -> testAddressBook.getContactById("07123456789"));
+        assertThrows(NoSuchElementException.class, () -> testAddressBook.getContactById("07123456789"));
     }
 
     @Test
@@ -268,7 +281,7 @@ public class AddressBookTest {
     @Test
     @DisplayName("Should return an exception if the contact does not exist")
     public void shouldReturnExceptionWhenContactDoesNotExistByEmail() {
-        assertThrows(IllegalArgumentException.class, () -> testAddressBook.getContactById("foo@bar.com"));
+        assertThrows(NoSuchElementException.class, () -> testAddressBook.getContactById("foo@bar.com"));
     }
 
     @Test

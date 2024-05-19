@@ -21,7 +21,9 @@ public class Contact {
     }
 
     private void setName(String name) {
-        Validation.validateName(name);
+        if (!Validation.validateName(name))
+            throw new IllegalArgumentException("Name is invalid - only letters and spaces are allowed.");
+
         this.name = name;
     }
 
@@ -34,15 +36,16 @@ public class Contact {
     }
 
     private void setEmail(String email) {
-        Validation.validateEmail(email);
+        if(!Validation.validateEmail(email))
+            throw new IllegalArgumentException("Email is invalid - must be in the format name@domain.com");
+
         this.email = email.toLowerCase();
     }
 
     private void setPhoneNumber(String phoneNumber) {
-        Validation.validatePhoneNumber(phoneNumber);
+        if(!Validation.validatePhoneNumber(phoneNumber))
+            throw new IllegalArgumentException("Phone number is invalid - must be 11 digits long, starting with 07.");
 
         this.phoneNumber = phoneNumber;
     }
-
-
 }
