@@ -171,6 +171,6 @@ _As a user, I want to be able to view the total number of contacts in the addres
 _As a user, I want to be able to search for a contact by partial name, phone number, or email address, so that I can find contacts even if I don't remember their full details_
 
 - [ ] Should return the contacts that contain partial matches when searching by
-  - [ ] Name
+  - [x] Name
   - [ ] Email address
   - [ ] Phone number

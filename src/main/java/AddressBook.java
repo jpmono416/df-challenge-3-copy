@@ -23,9 +23,9 @@ public class AddressBook {
     public List<Contact> getContactsByName(String name) {
         List<Contact> matchingContacts = new ArrayList<>();
 
-        this.contacts.stream().filter(contact -> contact.getName().equals(name)).forEach(matchingContacts::add);
+        this.contacts.stream().filter(contact -> contact.getName().contains(name)).forEach(matchingContacts::add);
 
-        return matchingContacts;
+        return sortContactsByName(Optional.of(matchingContacts));
     }
 
     public List<Contact> getContacts() {

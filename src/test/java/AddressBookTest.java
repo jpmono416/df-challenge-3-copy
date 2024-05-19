@@ -288,6 +288,21 @@ public class AddressBookTest {
         assertEquals(testContact, testAddressBook.getContactById("FOO@BAR.COM"));
     }
 
+    // User story 10
+    // TODO : Come and do US10 cases when partial search is enabled
+    //@Test
+    //@DisplayName("Should return the contacts in alphabetical order when searching by name")
+    public void shouldSearchByNameAlphabetical() {
+        Contact testContact2 = mock(Contact.class);
+
+        when(testContact.getName()).thenReturn("Foo Bar");
+        when(testContact2.getName()).thenReturn("Bar Foo");
+
+        testAddressBook.addContacts(List.of(testContact, testContact2));
+
+        // assert Bar Foo is first element
+    }
+
     // User story 11
     @Test
     @DisplayName("Should delete all contacts in the address book")
@@ -423,4 +438,20 @@ public class AddressBookTest {
 
         assertEquals(1, testAddressBook.getContactCount());
     }
+
+    // User story 14
+    @Test
+    @DisplayName("Should return partial matches when search by name")
+    public void shouldPartialMatchWhenSearchByName() {
+        Contact testContact2 = mock(Contact.class);
+
+        when(testContact.getName()).thenReturn("Bar Foo");
+        when(testContact2.getName()).thenReturn("Foo Bar");
+
+        testAddressBook.addContacts(List.of(testContact, testContact2));
+
+        assertEquals(2, testAddressBook.getContactsByName("Foo").size());
+    }
+
+
 }
