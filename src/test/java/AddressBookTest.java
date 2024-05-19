@@ -478,4 +478,17 @@ public class AddressBookTest {
 
         assertEquals(2, testAddressBook.getContactsByAnyMatch("@bar.com").size());
     }
+
+    @Test
+    @DisplayName("Should return partial matches when search by phone number")
+    public void shouldPartialMatchWhenSearchByPhone() {
+        Contact testContact2 = mock(Contact.class);
+
+        when(testContact.getName()).thenReturn("07123456789");
+        when(testContact2.getName()).thenReturn("07897654321");
+
+        testAddressBook.addContacts(List.of(testContact, testContact2));
+
+        assertEquals(2, testAddressBook.getContactsByAnyMatch("789").size());
+    }
 }
