@@ -61,7 +61,7 @@ public class AddressBookTest {
     @Test
     @DisplayName("Should return an empty list if no contact is found")
     public void shouldReturnEmptyListWhenNoContactFound() {
-        assertEquals(Collections.EMPTY_LIST, testAddressBook.getContactsByAnyMatch("John Doe"));
+        assertEquals(Collections.EMPTY_LIST, testAddressBook.getContactsByAnyMatch("John Doe", false));
     }
 
     @Test
@@ -79,9 +79,9 @@ public class AddressBookTest {
 
         testAddressBook.addContacts(List.of(testContact, testContact2));
 
-        assertEquals(List.of(testContact), testAddressBook.getContactsByAnyMatch("John Doe"));
-        assertEquals(List.of(testContact2), testAddressBook.getContactsByAnyMatch("John Smith"));
-        assertEquals(Collections.EMPTY_LIST, testAddressBook.getContactsByAnyMatch("John Deere"));
+        assertEquals(List.of(testContact), testAddressBook.getContactsByAnyMatch("John Doe", false));
+        assertEquals(List.of(testContact2), testAddressBook.getContactsByAnyMatch("John Smith", false));
+        assertEquals(Collections.EMPTY_LIST, testAddressBook.getContactsByAnyMatch("John Deere", false));
     }
 
     @Test
@@ -104,7 +104,7 @@ public class AddressBookTest {
 
         testAddressBook.addContacts(List.of(testContact, testContact2, testContact3));
 
-        assertEquals(List.of(testContact, testContact2), testAddressBook.getContactsByAnyMatch("John Doe"));
+        assertEquals(List.of(testContact, testContact2), testAddressBook.getContactsByAnyMatch("John Doe", false));
     }
 
     // User Story 3
@@ -302,9 +302,8 @@ public class AddressBookTest {
     }
 
     // User story 10
-    // TODO : Come and do US10 cases when partial search is enabled
-    //@Test
-    //@DisplayName("Should return the contacts in alphabetical order when searching by name")
+    @Test
+    @DisplayName("Should return the contacts in alphabetical order when searching by name")
     public void shouldSearchByNameAlphabetical() {
         Contact testContact2 = mock(Contact.class);
 
@@ -313,7 +312,7 @@ public class AddressBookTest {
 
         testAddressBook.addContacts(List.of(testContact, testContact2));
 
-        // assert Bar Foo is first element
+        assertEquals(testContact2, testAddressBook.getContactsByAnyMatch("Bar", true).get(0));
     }
 
     // User story 11
@@ -463,7 +462,7 @@ public class AddressBookTest {
 
         testAddressBook.addContacts(List.of(testContact, testContact2));
 
-        assertEquals(2, testAddressBook.getContactsByAnyMatch("Foo").size());
+        assertEquals(2, testAddressBook.getContactsByAnyMatch("Foo", false).size());
     }
 
     @Test
@@ -476,7 +475,7 @@ public class AddressBookTest {
 
         testAddressBook.addContacts(List.of(testContact, testContact2));
 
-        assertEquals(2, testAddressBook.getContactsByAnyMatch("@bar.com").size());
+        assertEquals(2, testAddressBook.getContactsByAnyMatch("@bar.com", false).size());
     }
 
     @Test
@@ -489,6 +488,6 @@ public class AddressBookTest {
 
         testAddressBook.addContacts(List.of(testContact, testContact2));
 
-        assertEquals(2, testAddressBook.getContactsByAnyMatch("789").size());
+        assertEquals(2, testAddressBook.getContactsByAnyMatch("789", false).size());
     }
 }

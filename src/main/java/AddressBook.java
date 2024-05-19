@@ -20,12 +20,15 @@ public class AddressBook {
         this.contacts.addAll(contacts);
     }
 
-    public List<Contact> getContactsByAnyMatch(String attribute) {
+    public List<Contact> getContactsByAnyMatch(String attribute, boolean sorted) {
         List<Contact> matchingContacts = new ArrayList<>();
 
         this.contacts.stream().filter(contact -> anyMatchInContact(attribute, contact)).forEach(matchingContacts::add);
 
-        return sortContactsByName(Optional.of(matchingContacts));
+        if(sorted)
+            return sortContactsByName(Optional.of(matchingContacts));
+        else
+            return matchingContacts;
     }
 
     public List<Contact> getContacts() {
