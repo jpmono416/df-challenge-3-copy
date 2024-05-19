@@ -303,7 +303,7 @@ public class AddressBookTest {
 
     // User story 10
     @Test
-    @DisplayName("Should return the contacts in alphabetical order when searching by name")
+    @DisplayName("Should return the contacts in alphabetical order by name when searching by name")
     public void shouldSearchByNameAlphabetical() {
         Contact testContact2 = mock(Contact.class);
 
@@ -313,6 +313,42 @@ public class AddressBookTest {
         testAddressBook.addContacts(List.of(testContact, testContact2));
 
         assertEquals(testContact2, testAddressBook.getContactsByAnyMatch("Bar", true).get(0));
+    }
+
+    @Test
+    @DisplayName("Should return the contacts in alphabetical order by name when searching by email")
+    public void shouldSearchByEmailAlphabetical() {
+        Contact testContact2 = mock(Contact.class);
+
+        when(testContact.getEmail()).thenReturn("foo@bar.com");
+        when(testContact.getName()).thenReturn("Foo B");
+        when(testContact.getPhoneNumber()).thenReturn("07123456789");
+
+        when(testContact2.getEmail()).thenReturn("bar@foo.com");
+        when(testContact2.getName()).thenReturn("B Foo");
+        when(testContact2.getPhoneNumber()).thenReturn("07987654321");
+
+        testAddressBook.addContacts(List.of(testContact, testContact2));
+
+        assertEquals(testContact2, testAddressBook.getContactsByAnyMatch("bar", true).get(0));
+    }
+
+    @Test
+    @DisplayName("Should return the contacts in alphabetical order by name when searching by phone number")
+    public void shouldSearchByPhoneAlphabetical() {
+        Contact testContact2 = mock(Contact.class);
+
+        when(testContact.getPhoneNumber()).thenReturn("07123456789");
+        when(testContact.getName()).thenReturn("Foo B");
+        when(testContact.getEmail()).thenReturn("foo@bar.com");
+
+        when(testContact2.getPhoneNumber()).thenReturn("07987654321");
+        when(testContact2.getName()).thenReturn("B Foo");
+        when(testContact2.getEmail()).thenReturn("bar@foo.com");
+
+        testAddressBook.addContacts(List.of(testContact, testContact2));
+
+        assertEquals(testContact2, testAddressBook.getContactsByAnyMatch("07", true).get(0));
     }
 
     // User story 11

@@ -133,10 +133,10 @@ _As a user, I want to search for a contact by email address, so I can see their 
 ## User story 10
 _As a user, I want to see the results in alphabetical order when I search for contacts, so that I can find them easily_
 
-- [ ] Should return the contacts in alphabetical order by name when sort enabled and
-  - [ ] Searching by name 
-  - [ ] Searching by email address
-  - [ ] Searching by phone number
+- [x] Should return the contacts in alphabetical order by name when sort enabled and
+  - [x] Searching by name 
+  - [x] Searching by email address
+  - [x] Searching by phone number
 ---
 
 ## User story 11
