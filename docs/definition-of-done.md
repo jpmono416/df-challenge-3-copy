@@ -104,10 +104,16 @@ _As a user, I want to be able to get all contacts in the address book, so that I
 ## User story 7
 _As a user, I want to use a console application, so that I can interact with the address book from my computer_
 
-- [ ] Should display a menu with the available options
-- [ ] Should display each attribute when printing a contact
-- [ ] Should validate the input for each option (only numbers within the range)
-
+- [x] Should get the correct command
+- [x] Should get the correct contact details
+- [x] Should get the correct contact ID
+- [x] Should get the correct delete confirmation
+- [x] Should only accept yes/no for delete all
+- [x] Should print the contacts correctly
+- [x] Should print a contact correctly
+- [x] Should print an error message correctly
+- [x] Should print the help message correctly
+- [x] Should print a message correctly
 
 ---
 
@@ -168,7 +174,7 @@ _As a user, I want to be able to view the total number of contacts in the addres
 ## User story 14
 _As a user, I want to be able to search for a contact by partial name, phone number, or email address, so that I can find contacts even if I don't remember their full details_
 
-- [ ] Should return the contacts that contain partial matches when searching by
+- [x] Should return the contacts that contain partial matches when searching by
   - [x] Name
   - [x] Email address
   - [x] Phone number
