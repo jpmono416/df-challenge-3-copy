@@ -45,7 +45,7 @@ public class AddressBook {
      * it can be easily updated here without modifying the behaviour of the other public methods that use it.
      */
     public Contact getContactById(String idString) {
-        if (!this.validateIdString(idString)) {
+        if (this.invalidIdString(idString)) {
             throw new IllegalArgumentException("Invalid email or phone number format.");
         }
 
@@ -59,13 +59,13 @@ public class AddressBook {
 
     public void removeContact(Contact contact) {
         if (!this.contacts.contains(contact))
-            throw new NoSuchElementException("Contact does not exist in the address book");
+            throw new NoSuchElementException("Contact does not exist");
 
         this.contacts.remove(contact);
     }
 
     public void removeContact(String idString) {
-        if (!validateIdString(idString)) {
+        if (invalidIdString(idString)) {
             throw new IllegalArgumentException("Invalid email or phone number.");
         }
         Contact result = findContactById(idString.toLowerCase());
@@ -111,7 +111,7 @@ public class AddressBook {
         return contacts.stream().anyMatch(contact -> contact.getPhoneNumber().equals(phoneNumber) || contact.getEmail().equals(email));
     }
 
-    public void deleteAllContacts() {
+    public void removeAllContacts() {
         if (this.contacts.isEmpty())
             throw new NoSuchElementException("There are no contacts to delete in the address book.");
 
@@ -147,8 +147,8 @@ public class AddressBook {
         return this.contacts.size();
     }
 
-    private boolean validateIdString(String idString) {
-        return Validation.validateEmail(idString) || Validation.validatePhoneNumber(idString);
+    private boolean invalidIdString(String idString) {
+        return !Validation.validateEmail(idString) && !Validation.validatePhoneNumber(idString);
     }
 
     private boolean anyMatchInContact(String attribute, Contact contact) {

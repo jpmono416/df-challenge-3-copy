@@ -14,8 +14,8 @@ import static org.mockito.Mockito.when;
 
 public class AddressBookTest {
 
-    AddressBook testAddressBook;
-    Contact testContact;
+    private AddressBook testAddressBook;
+    private Contact testContact;
 
     @BeforeEach
     public void setUp() {
@@ -360,14 +360,14 @@ public class AddressBookTest {
 
         testAddressBook.addContacts(List.of(testContact, testContact2, testContact3));
 
-        testAddressBook.deleteAllContacts();
+        testAddressBook.removeAllContacts();
         assertEquals(0, testAddressBook.getContacts().size());
     }
 
     @Test
     @DisplayName("Should not do anything if there are no contacts")
     public void shouldNotDoAnythingWithEmptyList() {
-        assertThrows(NoSuchElementException.class, () -> testAddressBook.deleteAllContacts());
+        assertThrows(NoSuchElementException.class, () -> testAddressBook.removeAllContacts());
     }
 
     // User story 12

@@ -11,25 +11,27 @@ classDiagram
 
     class Contact {
         +String name
-        +String emailAddress
         +String phoneNumber
-        -void validateEmail(String email)
-        -void validatePhone(String phone)
+        +String email
+        -void setName(String name)
+        -void setEmail(String email)
+        -void setPhoneNumber(String phoneNumber)
     }
-    
+
     class AddressBook {
         +List<Contact> contacts
-        +String addContact(Contact contact)
-        +String addContacts(List<Contact> contacts)
-        +String removeContact(Contact contact)
-        +String updateContact(String idString)
-        +List<Contact> getAllContacts(bool sorted)
-        +int countContacts()
-        +List<Contact> getContactsByAnyMatch(String name)
-        +List<Contact> sortContactsByName()
-        +List<Contact> sortContactsByEmail()
-        +List<Contact> sortContactsByPhoneNumber()
+        -void addContact(Contact contact)
+        -void removeContact(String idString)
+        -void updateContact(String idString, Contact editedContact)
         -Contact findContactById(String idString)
+        -boolean idAlreadyExists(String email, String phoneNumber)
+        -void removeAllContacts()
+        +List<Contact> sortContactsByName(Optional<List<Contact>> optContactsToSort)
+        +List<Contact> sortContactsByEmail(Optional<List<Contact>> optContactsToSort)
+        +List<Contact> sortContactsByPhone(Optional<List<Contact>> optContactsToSort)
+        +int getContactCount()
+        -boolean invalidIdString(String idString)
+        -boolean anyMatchInContact(String attribute, Contact contact)
     }
         
 ```
@@ -52,7 +54,6 @@ _As a user, I want to add contacts to the address book, so that I can save their
   - [x] Email address (foo@bar.baz)
   - [x] Phone number (07 + 9 digits)
   - [x] Name (alphabetical characters only)
-- [x] Should return a succesful message after adding a contact
 
 ---
 
@@ -71,7 +72,6 @@ _As a user, I want to remove a contact from the address book, so that I can dele
 - [x] Should remove a contact from the address book
 - [x] Should not remove a contact that does not exist
 - [x] Should remove a contact by email address or phone number
-- [ ] Should return a message after the operation
 
 ---
 
@@ -81,7 +81,6 @@ _As a user, I want to edit a contact in the address book, so that I can update t
 - [x] Should update a contact in the address book
 - [x] Should not update a contact that does not exist
 - [x] Should not edit a contact if email or phone number already exists
-- [ ] Should return a message after the operation 
 
 ---
 
@@ -89,7 +88,6 @@ _As a user, I want to edit a contact in the address book, so that I can update t
 _As a user, I want to be warned if I try to add a contact with an existing phone number or email address, so that I can avoid duplicates_
 
 - [x] Should not add a contact with an existing phone number or email address
-- [ ] Should return a message after the operation
 
 ---
 
@@ -148,8 +146,8 @@ _As a user, I want to see the results in alphabetical order when I search for co
 ## User story 11
 _As a user, I want to delete all contacts at once after confirming the action, so that I can redo my address book_
 
-- [ ] Should ask for confirmation before deleting
-- [ ] Should not delete if the user does not confirm
+- [x] Should ask for confirmation before deleting
+- [x] Should not delete if the user does not confirm
 - [x] Should delete all contacts in the address book
 - [x] Should not do anything if there are no contacts
 - [x] Should return a message after the operation
