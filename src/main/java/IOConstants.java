@@ -34,7 +34,7 @@ public final class IOConstants {
     public static final String INVALID_EMAIL = "Invalid email address. Format should be name@domain.com";
     public static final String INVALID_PHONE_NUMBER = "Invalid phone number. Format should be 07 followed by 9 digits";
     public static final String INVALID_YES_NO = "Invalid input. Type 'yes' to confirm, or 'no' to cancel.";
-    public static final String CANCEL_NOT_ALLOWED = "Cancel not allowed here. Only while managing contacts"; // TODO find where this needs to go
+    public static final String CANCEL_NOT_ALLOWED = "Cancel not allowed here. Only while managing contacts";
     public static final String NO_CONTACTS = "There are no contacts in the address book.";
 
     // Prompts
