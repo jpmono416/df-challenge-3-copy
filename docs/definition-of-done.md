@@ -63,7 +63,7 @@ _As a user, I want to search for a contact by name, so I can see their details_
 - [x] Should return the contact with the given name
 - [x] Should return multiple contacts with the same name
 - [x] Should return an empty list if no contact is found
- 
+ - [ ] Copilot: Should return an exception if the name is empty or null
 ---
 
 ## User story 3
@@ -81,6 +81,7 @@ _As a user, I want to edit a contact in the address book, so that I can update t
 - [x] Should update a contact in the address book
 - [x] Should not update a contact that does not exist
 - [x] Should not edit a contact if email or phone number already exists
+- [ ] Copilot: Should not update a contact if the new details are null or empty
 
 ---
 
@@ -88,6 +89,7 @@ _As a user, I want to edit a contact in the address book, so that I can update t
 _As a user, I want to be warned if I try to add a contact with an existing phone number or email address, so that I can avoid duplicates_
 
 - [x] Should not add a contact with an existing phone number or email address
+- [ ] Copilot: Should not add a contact if the email or phone number is null 
 
 ---
 
@@ -96,6 +98,7 @@ _As a user, I want to be able to get all contacts in the address book, so that I
 
 - [x] Should return all contacts in the address book
 - [x] Should return an empty list if no contacts are found
+- [ ] Copilot: Should return an empty list if the address book is null
 
 ---
 
@@ -112,6 +115,7 @@ _As a user, I want to use a console application, so that I can interact with the
 - [x] Should print an error message correctly
 - [x] Should print the help message correctly
 - [x] Should print a message correctly
+- [ ] Copilot: Should handle invalid commands
 
 ---
 
@@ -176,3 +180,4 @@ _As a user, I want to be able to search for a contact by partial name, phone num
   - [x] Name
   - [x] Email address
   - [x] Phone number
+- [ ] Copilot: Should return an exception if the partial name, phone number, or email address is null
