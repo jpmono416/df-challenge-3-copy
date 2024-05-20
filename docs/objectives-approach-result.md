@@ -39,6 +39,9 @@ It was also used to help out with regex for the validation of the IDs:
 It was also used to generate some edge test cases, although I believe the suggested cases are implicitly covered by the validation rules applied:
 ![copilot-5](./img/copilot-edge-test-cases.png)
 
+Additionally, it was used to generate documentation:
+![copilot-6](./img/copilot-javadoc.png)
+
 Finally, I did use it a bit more to help with generating user stories for the advanced requirements of the project and ended up using a few of them:
 ![copilot-user-stories](./img/copilot-user-stories-1.png)
 ![copilot-user-stories-2](./img/copilot-user-stories-2.png)

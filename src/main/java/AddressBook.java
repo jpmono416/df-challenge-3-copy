@@ -9,6 +9,11 @@ public class AddressBook {
         this.contacts = new ArrayList<>();
     }
 
+    /**
+     * Adds a contact to the address book.
+     * @param contact The contact to be added.
+     * @throws IllegalArgumentException if a contact with the same email or phone number already exists.
+     */
     public void addContact(Contact contact) {
         if (idAlreadyExists(contact.getEmail(), contact.getPhoneNumber()))
             throw new IllegalArgumentException("Contact with the same email or phone number already exists");
@@ -16,10 +21,20 @@ public class AddressBook {
         this.contacts.add(contact);
     }
 
+    /**
+     * Adds a list of contacts to the address book.
+     * @param contacts The list of contacts to be added.
+     */
     public void addContacts(List<Contact> contacts) {
         this.contacts.addAll(contacts);
     }
 
+    /**
+     * Returns a list of contacts that match a given attribute.
+     * @param attribute The attribute to match.
+     * @param sorted Whether the returned list should be sorted by name.
+     * @return A list of matching contacts.
+     */
     public List<Contact> getContactsByAnyMatch(String attribute, boolean sorted) {
         List<Contact> matchingContacts = new ArrayList<>();
 
@@ -31,6 +46,10 @@ public class AddressBook {
             return matchingContacts;
     }
 
+    /**
+     * Returns a list of all contacts in the address book.
+     * @return A list of all contacts.
+     */
     public List<Contact> getContacts() {
         return this.contacts;
     }
